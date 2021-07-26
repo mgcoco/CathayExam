@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">臺北市立動物園</string>
+
+    <string name="general_open_in_browser">在網頁開啟</string>
+    <string name="general_loading">加載中...</string>
+    <string name="general_no_more_data">無其他資料</string>
+    <string name="general_refresh_data">刷新資料</string>
+
+</resources>

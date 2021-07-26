@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.marcus.cathay.ui.home.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_pavilion_detail"
+            app:destination="@id/navigation_pavilion_detail"
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/slide_in"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pavilion_detail"
+        android:name="com.marcus.cathay.ui.paviliondetail.PavilionDetailFragment"
+        tools:layout="@layout/fragment_pavilion_detail" >
+
+        <argument
+            android:name="detail"
+            app:argType="com.marcus.cathay.data.response.PavilionDetail"/>
+
+        <action
+            android:id="@+id/action_navigation_pavilion_detail_to_navigation_plant_detail"
+            app:destination="@id/navigation_plant_detail"
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/slide_in"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_plant_detail"
+        android:name="com.marcus.cathay.ui.plantDetail.PlantDetailFragment"
+        tools:layout="@layout/fragment_plant_detail">
+
+        <argument
+            android:name="detail"
+            app:argType="com.marcus.cathay.data.response.PlantDetail"/>
+    </fragment>
+</navigation>

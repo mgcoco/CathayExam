@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.marcus.cathay.data.response.PavilionDetail" />
+
+        <variable
+            name="presenter"
+            type="com.marcus.cathay.ui.paviliondetail.PavilionDetailPresenter" />
+    </data>
+
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:onClick="@{view -> presenter.viewPavilionFullImage()}"
+                app:imageUrl="@{data.picture}"
+                app:layout_constraintDimensionRatio="1.65:1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/gap_10"
+                android:text="@{data.description}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintTop_toBottomOf="@id/picture" />
+
+            <TextView
+                android:id="@+id/memo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/gap_10"
+                android:text="@{data.memo}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintEnd_toStartOf="@id/open_in_browser"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description" />
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/gap_10"
+                android:layout_marginTop="@dimen/gap_5"
+                android:text="@{data.category}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintEnd_toStartOf="@id/open_in_browser"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/memo" />
+
+            <TextView
+                android:id="@+id/open_in_browser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/gap_10"
+                android:layout_marginTop="@dimen/gap_5"
+                android:layout_marginRight="@dimen/gap_10"
+                android:text="@string/general_open_in_browser"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="@dimen/text_size_14"
+                android:onClick="@{view -> presenter.openInBrowser(context, data.url)}"
+                app:layout_constraintBottom_toBottomOf="@id/category"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_15"
+                android:layout_marginTop="@dimen/gap_10"
+                android:background="@color/color_bg_gray"
+                app:layout_constraintTop_toBottomOf="@id/open_in_browser" />
+
+            <TextView
+                android:id="@+id/plant_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="@dimen/gap_3"
+                android:padding="@dimen/gap_10"
+                android:text="@string/plant_info"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="@dimen/gap_3"
+                android:padding="@dimen/gap_10"
+                android:src="@drawable/ic_scroll_up_down"
+                app:layout_constraintBottom_toBottomOf="@id/plant_data"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/plant_data"
+                android:tint="@color/color_hint_gray"/>
+
+            <com.jcodecraeer.xrecyclerview.XRecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/plant_data" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

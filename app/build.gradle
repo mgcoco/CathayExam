@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+rootProject.ext.plugin.each{
+    apply plugin: it
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.marcus.cathayexam"
+        minSdkVersion rootProject.ext.defaultConfig.minSdkVersion
+        targetSdkVersion rootProject.ext.defaultConfig.targetSdkVersion
+        versionCode rootProject.ext.defaultConfig.versionCode
+        versionName rootProject.ext.defaultConfig.versionName
+
+        kapt {
+            arguments {
+                // 路由框架译配置
+                // module名称
+                arg("AROUTER_MODULE_NAME", "main")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    rootProject.ext.dependencies.publicImplementation.each{
+        implementation it
+    }
+
+    rootProject.ext.dependencies.other.each{
+        implementation project(it)
+    }
+
+    rootProject.ext.dependencies.api.each{
+        api it
+    }
+
+    rootProject.ext.dependencies.kapt.each{
+        kapt it
+    }
+
+}

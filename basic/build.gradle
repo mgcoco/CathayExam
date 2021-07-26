@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+rootProject.ext.plugin.each{
+    apply plugin: it
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.defaultConfig.minSdkVersion
+        targetSdkVersion rootProject.ext.defaultConfig.targetSdkVersion
+        versionCode 1
+        versionName '1.0'
+
+        kapt {
+            arguments {
+                // 路由框架译配置
+                // module名称
+                arg("AROUTER_MODULE_NAME", "basic")
+                // 是否生成路由文档，"enable"：生成文档，其他字符串不生成路由文档
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.kotlinOptions.jvmTarget
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+}
+
+dependencies {
+    rootProject.ext.dependencies.publicImplementation.each{
+        implementation it
+    }
+
+    rootProject.ext.dependencies.api.each{
+        api it
+    }
+
+    rootProject.ext.dependencies.kapt.each{
+        kapt it
+    }
+}

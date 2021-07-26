@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="no_break_time_data">無休館資訊</string>
+
+    <string name="plant_info">植物資料</string>
+
+    <string name="info_alias">別名</string>
+    <string name="info_introduce">簡介</string>
+    <string name="info_feature">辨認方式</string>
+    <string name="info_function">功能性</string>
+    <string name="info_last_update_time">最後更新：</string>
+
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.marcus.cathay.data.response.PlantDetail" />
+
+        <variable
+            name="presenter"
+            type="com.marcus.cathay.ui.plantDetail.PlantDetailPresenter" />
+
+        <import type="com.marcus.cathay.R" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:onClick="@{view -> presenter.viewPavilionFullImage()}"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{data.picture01}"
+                app:layout_constraintDimensionRatio="1.65:1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/style_info_title"
+                android:text="@{data.nameCh}"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/picture" />
+
+            <TextView
+                android:id="@+id/name_en"
+                style="@style/style_info_title"
+                android:paddingTop="@dimen/gap_5"
+                android:text="@{data.nameEn}"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name" />
+
+            <TextView
+                android:id="@+id/alias_title"
+                style="@style/style_info_title"
+                android:text="@string/info_alias"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_en" />
+
+            <TextView
+                android:id="@+id/alias"
+                style="@style/style_info_content"
+                android:text="@{data.alsoKnow}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/alias_title" />
+
+            <TextView
+                android:id="@+id/introduce_title"
+                style="@style/style_info_title"
+                android:text="@string/info_introduce"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/alias" />
+
+            <TextView
+                android:id="@+id/introduce"
+                style="@style/style_info_content"
+                android:text="@{data.brief}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/introduce_title" />
+
+            <TextView
+                android:id="@+id/featureTitle"
+                style="@style/style_info_title"
+                android:text="@string/info_feature"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/introduce" />
+
+            <TextView
+                android:id="@+id/feature"
+                style="@style/style_info_content"
+                android:text="@{data.feature}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/featureTitle" />
+
+            <TextView
+                android:id="@+id/function_title"
+                style="@style/style_info_title"
+                android:text="@string/info_function"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/feature" />
+
+            <TextView
+                android:id="@+id/function"
+                style="@style/style_info_content"
+                android:text="@{data.function}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/function_title" />
+
+            <TextView
+                style="@style/style_info_title"
+                android:paddingBottom="@dimen/gap_10"
+                android:text="@{context.getString(R.string.info_last_update_time) + data.update}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/function" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
